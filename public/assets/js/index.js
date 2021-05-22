@@ -33,24 +33,6 @@ const getNotes = () =>
     },
   })
     .then(response => response)
-    
-    // .then((data) => {
-     // console.log(data)
-      //return data
-      // const { name, role, age, forcePoints } = data;
-
-      // if (data) {
-      //   statsEl.setAttribute('style', 'display: inline');
-      //   nameEl.textContent = name;
-      //   roleEl.textContent = role;
-      //   ageEl.textContent = age;
-      //   fpEl.textContent = forcePoints;
-      // } else {
-      //   nameEl.textContent =
-      //     'The force is not strong with this one. Your character was not found.';
-      //     statsEl.setAttribute('style', 'display: none');
-      // }
-    // })
     .catch((error) => {
       console.error(error)
     })
