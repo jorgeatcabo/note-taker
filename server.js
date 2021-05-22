@@ -54,8 +54,6 @@ app.post("/api/notes", (req, res) => {
     console.error(err)
   }
 
-  // push changes to your array
-  // productArray ['product'].push({ any thing you want to add })
 })
 
 app.delete("/api/notes/:id", (req, res) => {
@@ -83,14 +81,6 @@ app.delete("/api/notes/:id", (req, res) => {
     res.json(`Data Base Empty`)
   }
 
-
-  // for (let i = 0Kq; i < characters.length; i++) {
-  //   if (chosen === characters[i].routeName) {
-  //     return res.json(characters[i]);
-  //   }
- // }
-
-  // return res.json(false);
 });
 
 // Starts the server to begin listening
