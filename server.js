@@ -17,13 +17,13 @@ app.use(express.static(path.join(__dirname, "public")))
 // Routes
 
 app.get("/notes", (req, res) =>
-  res.sendFile(path.join(__dirname, "/public/notes.html"))
+  res.sendFile(path.join(__dirname, "public/notes.html"))
 )
 
 // // Displays all characters
 app.get("/api/notes", (req, res) => {
   try {
-    const data = fs.readFileSync(path.join(__dirname, "/db/db.json"), "utf8")
+    const data = fs.readFileSync(path.join(__dirname, "db/db.json"), "utf8")
     res.send(data)
   } catch (err) {
     console.error(err)
@@ -31,11 +31,11 @@ app.get("/api/notes", (req, res) => {
 })
 
 app.get("/", (req, res) =>
-  res.sendFile(path.join(__dirname, "/public/index.html"))
+  res.sendFile(path.join(__dirname, "public/index.html"))
 )
 
 app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "/public/index.html"))
+  res.sendFile(path.join(__dirname, "public/index.html"))
 )
 
 // // Create New Note - takes in JSON input
