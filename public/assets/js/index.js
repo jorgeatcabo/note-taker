@@ -32,9 +32,11 @@ const getNotes = () =>
       "Content-Type": "application/json",
     },
   })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data)
+    .then(response => response)
+    
+    // .then((data) => {
+     // console.log(data)
+      //return data
       // const { name, role, age, forcePoints } = data;
 
       // if (data) {
@@ -48,7 +50,7 @@ const getNotes = () =>
       //     'The force is not strong with this one. Your character was not found.';
       //     statsEl.setAttribute('style', 'display: none');
       // }
-    })
+    // })
     .catch((error) => {
       console.error(error)
     })
@@ -178,6 +180,8 @@ const renderNoteList = async (notes) => {
     noteListItems.push(createLi("No saved Notes", false))
   }
 
+  
+
   jsonNotes.forEach((note) => {
     const li = createLi(note.title)
     li.dataset.note = JSON.stringify(note)
@@ -191,6 +195,7 @@ const renderNoteList = async (notes) => {
 }
 
 // Gets notes from the db and renders them to the sidebar
+// const getAndRenderNotes = () => getNotes().then(response=>renderNoteList(response))
 const getAndRenderNotes = () => getNotes().then(renderNoteList)
 
 if (window.location.pathname === "/notes") {
@@ -201,3 +206,10 @@ if (window.location.pathname === "/notes") {
 }
 
 getAndRenderNotes();
+// res=getNotes()
+// console.log(res)
+
+/////***************************** */
+//// Try this:
+///////getvals().then(response => console.log(response));
+////https://stackoverflow.com/questions/44644138/return-the-result-value-with-fetch-call-function-from-another-page-react-native

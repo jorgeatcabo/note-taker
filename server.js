@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")))
 
 // Routes
 
@@ -26,8 +26,8 @@ app.get("/notes", (req, res) =>
 app.get("/api/notes", (req, res) => {
   try {
     const data = fs.readFileSync(path.join(__dirname, "/db/db.json"), "utf8")
-    res.json(data)
-    console.log(data)
+    res.send(data)
+    // console.log(data)
   } catch (err) {
     console.error(err)
   }
@@ -65,14 +65,12 @@ app.post("/api/notes", (req, res) => {
   try {
     let rawdata = fs.readFileSync(path.join(__dirname, "/db/db.json"), "utf8")
     let noteArray = JSON.parse(rawdata)
-     //uuidv4()
+    //uuidv4()
     noteArray.push(newNote)
-    
-   
+
     const fileDb = path.join(__dirname, "/db/db.json")
     fs.writeFileSync(fileDb, JSON.stringify(noteArray))
-    //console.log(newNote)
-    res.json(newNote);
+    res.json(newNote)
   } catch (err) {
     console.error(err)
   }
