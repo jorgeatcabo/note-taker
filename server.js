@@ -4,10 +4,8 @@ const express = require("express")
 const path = require("path")
 const fs = require("fs")
 const { v4: uuidv4 } = require("uuid")
-//app.use(express.static('public'));
 
 // Sets up the Express App
-
 const app = express()
 const PORT = process.env.PORT || 3000
 
@@ -60,11 +58,12 @@ app.post("/api/notes", (req, res) => {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   const newNote = req.body
+  newNote.id=uuidv4()
 
   try {
     let rawdata = fs.readFileSync(path.join(__dirname, "/db/db.json"), "utf8")
     let noteArray = JSON.parse(rawdata)
-    //uuidv4()
+    let uuid=uuidv4()
     noteArray.push(newNote)
 
     const fileDb = path.join(__dirname, "/db/db.json")
