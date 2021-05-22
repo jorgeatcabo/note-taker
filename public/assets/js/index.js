@@ -188,10 +188,3 @@ if (window.location.pathname === "/notes") {
 }
 
 getAndRenderNotes();
-// res=getNotes()
-// console.log(res)
-
-/////***************************** */
-//// Try this:
-///////getvals().then(response => console.log(response));
-////https://stackoverflow.com/questions/44644138/return-the-result-value-with-fetch-call-function-from-another-page-react-native

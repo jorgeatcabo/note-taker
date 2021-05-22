@@ -34,25 +34,6 @@ app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/index.html"))
 )
 
-// // Displays a single character, or returns false
-// app.get('/api/characters/:character', (req, res) => {
-//   const chosen = req.params.character;
-
-//   console.log(chosen);
-
-//   /* Check each character routeName and see if the same as "chosen"
-//    If the statement is true, send the character back as JSON,
-//    otherwise tell the user no character was found */
-
-//   for (let i = 0; i < characters.length; i++) {
-//     if (chosen === characters[i].routeName) {
-//       return res.json(characters[i]);
-//     }
-//   }
-
-//   return res.json(false);
-// });
-
 // // Create New Note - takes in JSON input
 app.post("/api/notes", (req, res) => {
   // req.body hosts is equal to the JSON post sent from the user
@@ -76,6 +57,41 @@ app.post("/api/notes", (req, res) => {
   // push changes to your array
   // productArray ['product'].push({ any thing you want to add })
 })
+
+app.delete("/api/notes/:id", (req, res) => {
+  const id = req.params.id;
+  let rawdata = fs.readFileSync(path.join(__dirname, "/db/db.json"), "utf8")
+  let noteArray = JSON.parse(rawdata)
+  if (noteArray.length>0){
+    const found =noteArray.some(note=>note.id===id)
+    if (found){
+      newNoteArray=noteArray.filter(note=>note.id!==id)
+      const fileDb = path.join(__dirname, "/db/db.json")
+      fs.writeFileSync(fileDb, JSON.stringify(newNoteArray))
+      console.log(`Delete it`)
+      res.json(newNoteArray)
+    }
+    else
+    {
+      console.log(`Not Found`)
+      res.json(`Not Found`)
+    }
+  }
+  else
+  {
+    console.log(`Data Base Empty`)
+    res.json(`Data Base Empty`)
+  }
+
+
+  // for (let i = 0Kq; i < characters.length; i++) {
+  //   if (chosen === characters[i].routeName) {
+  //     return res.json(characters[i]);
+  //   }
+ // }
+
+  // return res.json(false);
+});
 
 // Starts the server to begin listening
 
