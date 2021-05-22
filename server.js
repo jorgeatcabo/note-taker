@@ -4,6 +4,7 @@ const express = require("express")
 const path = require("path")
 const fs = require("fs")
 const { v4: uuidv4 } = require("uuid")
+//app.use(express.static('public'));
 
 // Sets up the Express App
 
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 3000
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 
@@ -63,14 +65,14 @@ app.post("/api/notes", (req, res) => {
   try {
     let rawdata = fs.readFileSync(path.join(__dirname, "/db/db.json"), "utf8")
     let noteArray = JSON.parse(rawdata)
-    console.log(noteArray)
+     //uuidv4()
     noteArray.push(newNote)
-    console.log(newNote)
-
-    //uuidv4()
+    
+   
     const fileDb = path.join(__dirname, "/db/db.json")
     fs.writeFileSync(fileDb, JSON.stringify(noteArray))
-    res.json(noteArray)
+    //console.log(newNote)
+    res.json(newNote);
   } catch (err) {
     console.error(err)
   }
